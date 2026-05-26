@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bay Harbor Re — Trust Investment Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:       #0b1929;
+  --navy-2:     #122035;
+  --navy-3:     #1a2e48;
+  --navy-4:     #243d5e;
+  --gold:       #c8a44a;
+  --gold-light: #e8c97a;
+  --gold-pale:  #f7edcf;
+  --cream:      #f4efe5;
+  --cream-2:    #ece5d5;
+  --white:      #ffffff;
+  --green:      #1a6647;
+  --green-bg:   #eaf4ee;
+  --red:        #a83228;
+  --red-bg:     #fdf0ee;
+  --amber:      #7a5400;
+  --amber-bg:   #fdf6e3;
+  --blue:       #1a3a6e;
+  --blue-bg:    #eef3fc;
+  --purple:     #4a1a6e;
+  --purple-bg:  #f3eefb;
+  --teal:       #0e5c52;
+  --teal-bg:    #eaf5f3;
+  --slate:      #8fa3bb;
+  --text:       #1e2f42;
+  --text-light: #4a6070;
+  --border:     #d8cebc;
+  --mid-grey:   #c8c0b0;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Outfit', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size:13px;line-height:1.6;min-height:100vh}
+
+/* HEADER */
+.site-header{background:var(--navy);border-bottom:2px solid var(--gold);padding:0 40px;position:sticky;top:0;z-index:100}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:54px}
+.brand{display:flex;align-items:baseline;gap:12px}
+.brand-name{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--white);letter-spacing:.02em}
+.brand-div{color:var(--gold);font-size:16px}
+.brand-doc{font-family:var(--mono);font-size:10px;color:var(--slate);letter-spacing:.1em;text-transform:uppercase}
+.header-meta{font-family:var(--mono);font-size:10px;color:var(--slate);text-align:right;line-height:1.7}
+
+/* TAB NAV */
+.tab-nav{background:var(--navy-2);border-bottom:1px solid var(--navy-3);padding:0 40px;display:flex}
+.tab-btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);padding:13px 22px;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;position:relative;top:1px}
+.tab-btn:hover{color:var(--cream)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-badge{display:inline-block;background:var(--navy-4);border-radius:8px;padding:1px 6px;font-size:8px;margin-left:6px;color:var(--slate);vertical-align:middle}
+.tab-btn.active .tab-badge{background:var(--gold);color:var(--navy)}
+
+/* PANELS */
+.panel{display:none}
+.panel.active{display:block}
+.content{max-width:1260px;margin:0 auto;padding:28px 40px 80px}
+
+/* NOTICE BANNERS */
+.notice{display:flex;align-items:flex-start;gap:10px;padding:11px 16px;border-radius:0 4px 4px 0;margin-bottom:24px;font-size:12px;line-height:1.5}
+.notice-warn{background:var(--amber-bg);border:1px solid #e5cfa0;border-left:4px solid var(--amber);color:var(--amber)}
+.notice strong{font-weight:600}
+
+/* SECTION HEAD */
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;padding-bottom:9px;border-bottom:1px solid var(--gold)}
+.section-head h2{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--navy);letter-spacing:.01em}
+.section-tag{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:2px 8px;border-radius:2px}
+.section-sub{font-family:var(--mono);font-size:10px;color:var(--slate);letter-spacing:.04em;margin-bottom:20px}
+
+/* TRUST CARDS GRID */
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+
+/* TRUST CARD */
+.trust-card{background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:0 1px 6px rgba(11,25,41,.06)}
+.trust-card-header{padding:13px 18px;display:flex;flex-direction:column;gap:3px}
+.trust-card-header .carrier-name{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--white);letter-spacing:.01em}
+.trust-card-header .carrier-meta{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.55);letter-spacing:.06em;text-transform:uppercase}
+.trust-card-header .carrier-status{margin-top:4px}
+
+/* per-trust header colors */
+.hdr-sutton{background:linear-gradient(135deg,#0f2540,#1a3a5c)}
+.hdr-clearblue{background:linear-gradient(135deg,#0e3a5c,#1a5c7a)}
+.hdr-trisura{background:linear-gradient(135deg,#2a1040,#3d1a60)}
+.hdr-accredited{background:linear-gradient(135deg,#0a3a2a,#1a5c40)}
+
+/* RULE ROWS */
+.rule-list{padding:0}
+.rule-row{display:grid;grid-template-columns:140px 1fr;gap:10px;padding:9px 18px;border-bottom:1px solid #f0ebe0;align-items:start}
+.rule-row:last-child{border-bottom:none}
+.rule-row:nth-child(even){background:#faf7f2}
+.rule-label{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);padding-top:2px;line-height:1.4}
+.rule-val{font-size:12px;line-height:1.55;color:var(--text)}
+.rule-na{color:var(--mid-grey);font-style:italic;font-size:11px}
+
+/* CHIPS */
+.chip{display:inline-block;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.05em;padding:2px 8px;border-radius:3px;margin-right:3px;margin-bottom:2px;vertical-align:middle;text-transform:uppercase}
+.chip-green{background:var(--green-bg);color:var(--green)}
+.chip-red{background:var(--red-bg);color:var(--red)}
+.chip-amber{background:var(--amber-bg);color:var(--amber)}
+.chip-grey{background:var(--cream-2);color:var(--text-light)}
+
+/* CONTRACT CITE LINKS */
+.cite{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:var(--gold);border:1px solid rgba(200,164,74,.3);border-radius:3px;padding:2px 7px;cursor:pointer;background:rgba(200,164,74,.06);transition:all .15s;margin-left:3px;vertical-align:middle;text-decoration:none}
+.cite:hover{background:rgba(200,164,74,.18);border-color:var(--gold);color:var(--gold-light)}
+.cite::before{content:'§';font-size:10px}
+
+/* TBD card style */
+.tbd-body{padding:18px;background:var(--amber-bg);border-top:1px solid #e5cfa0}
+.tbd-body p{font-size:12px;color:var(--amber);line-height:1.6}
+
+/* MECHANICS GRID */
+.mech-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.mech-card{background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:0 1px 6px rgba(11,25,41,.06)}
+.mech-card-hdr{background:var(--navy-2);padding:11px 18px;border-left:3px solid var(--gold)}
+.mech-card-hdr h3{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);font-weight:600}
+.mech-row{padding:10px 18px;border-bottom:1px solid #f0ebe0;font-size:12px}
+.mech-row:last-child{border-bottom:none}
+.mech-row:nth-child(even){background:#faf7f2}
+.mech-topic{font-weight:600;color:var(--navy);margin-bottom:2px;font-size:11.5px}
+.mech-detail{color:var(--text-light);font-size:12px;line-height:1.6}
+
+/* TRUST MECHANICS — per-trust section headings already use section-head */
+
+/* TRUST AGREEMENT SELECTOR */
+.agree-btn{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:12px 18px;cursor:pointer;transition:all .18s;display:flex;flex-direction:column;gap:4px;min-width:120px;text-align:left}
+.agree-btn:hover{border-color:var(--gold);background:var(--gold-pale)}
+.agree-btn.active{border-color:var(--gold);background:var(--gold-pale);box-shadow:0 0 0 2px rgba(200,164,74,.2)}
+.agree-btn-name{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--navy)}
+.agree-btn-status{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;display:inline-block;width:fit-content}
+.agree-btn-status.executed{background:var(--green-bg);color:var(--green)}
+.agree-btn-status.pending{background:var(--amber-bg);color:var(--amber)}
+
+/* AGREEMENT PANES */
+.agree-pane{display:none}
+.agree-pane.active{display:block}
+
+/* AGREEMENT METADATA ROW */
+.agree-meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:6px}
+.agree-meta-item{display:flex;flex-direction:column;gap:3px;min-width:180px;flex:1}
+.agree-meta-label{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+
+/* AGREEMENT PLACEHOLDER (for non-embedded docs) */
+.agree-placeholder{border-radius:6px;padding:40px 32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:16px}
+.agree-placeholder-icon{font-size:36px;opacity:.6}
+.agree-placeholder-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--white)}
+.agree-placeholder-sub{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.05em}
+.agree-upload-link{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--gold-light);border:1px solid rgba(232,201,122,.4);padding:8px 16px;border-radius:4px;background:rgba(232,201,122,.1);transition:all .15s;letter-spacing:.05em;text-decoration:none}
+.agree-upload-link:hover{background:rgba(232,201,122,.2);border-color:var(--gold-light)}
+.agree-sharepoint-note{font-family:var(--mono);font-size:10px;color:var(--slate);padding:10px 14px;background:var(--cream);border:1px solid var(--border);border-radius:4px;line-height:1.6}
+.diff-wrap{background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:24px;box-shadow:0 1px 6px rgba(11,25,41,.06)}
+.diff-table{width:100%;border-collapse:collapse}
+.diff-table thead tr{background:var(--navy)}
+.diff-table thead th{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--white);padding:9px 14px;text-align:left;font-weight:500;border-right:1px solid var(--navy-3)}
+.diff-table thead th:last-child{border-right:none}
+.diff-table tbody tr{border-bottom:1px solid #f0ebe0}
+.diff-table tbody tr:nth-child(even){background:#faf7f2}
+.diff-table tbody tr:hover{background:#f5f0e8}
+.diff-table td{padding:8px 14px;font-size:11.5px;vertical-align:top}
+.diff-table td:first-child{font-family:var(--mono);font-size:10px;color:var(--text-light);font-weight:500;white-space:nowrap}
+.diff-table .cat-row td{background:var(--navy-2);color:var(--gold-light);font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;font-weight:600}
+
+/* PROHIBITIONS */
+.prohibit-card{background:var(--red-bg);border:1px solid #e8c0bb;border-radius:6px;overflow:hidden;margin-bottom:24px}
+.prohibit-hdr{background:var(--red);padding:10px 18px}
+.prohibit-hdr h3{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--white);font-weight:600}
+.prohibit-row{padding:9px 18px;border-bottom:1px solid #f0d0cb;font-size:12px;display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.prohibit-row:last-child{border-bottom:none}
+.prohibit-row::before{content:'✕';color:var(--red);font-weight:700;flex-shrink:0;padding-top:1px}
+
+/* ADDITIONAL ASSETS ACCORDION */
+.accord-item{background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:12px}
+.accord-hdr{background:var(--navy-2);padding:10px 18px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.accord-hdr h4{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--cream);flex:1}
+.accord-hdr .chev{font-size:10px;color:var(--slate);transition:transform .2s}
+.accord-item.open .chev{transform:rotate(180deg)}
+.accord-body{display:none}
+.accord-item.open .accord-body{display:block}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(11,25,41,.78);z-index:1000;backdrop-filter:blur(3px);align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:8px;width:720px;max-width:94vw;max-height:86vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(11,25,41,.4);overflow:hidden;animation:modalIn .2s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-hdr{background:var(--navy);padding:15px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:2px solid var(--gold)}
+.modal-hdr-left{display:flex;flex-direction:column;gap:2px}
+.modal-title{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--white)}
+.modal-sub{font-family:var(--mono);font-size:9px;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+.modal-close{background:var(--navy-3);border:1px solid var(--navy-4);color:var(--slate);width:28px;height:28px;border-radius:4px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.modal-close:hover{background:var(--navy-4);color:var(--white)}
+.modal-body{overflow-y:auto;padding:22px;flex:1}
+.modal-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+.modal-clause{background:var(--gold-pale);border-left:4px solid var(--gold);border-radius:0 4px 4px 0;padding:13px 17px;font-size:12.5px;line-height:1.78;color:var(--text);margin-bottom:18px;font-family:var(--serif);font-style:italic}
+.modal-clause strong{background:rgba(200,164,74,.3);border-radius:2px;padding:0 2px;font-style:normal;font-weight:600}
+.modal-context{font-size:12px;line-height:1.65;color:var(--text-light);padding:12px 15px;background:var(--cream);border-radius:4px;border:1px solid var(--border)}
+.modal-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:var(--mono);font-size:10px;color:var(--gold);text-decoration:none;border:1px solid rgba(200,164,74,.4);padding:7px 13px;border-radius:4px;background:rgba(200,164,74,.06);transition:all .15s;letter-spacing:.05em;opacity:.7}
+.modal-link:hover{background:rgba(200,164,74,.15);border-color:var(--gold);opacity:1}
+
+/* EMBEDDED PDF */
+.pdf-embed-wrap{border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:28px;box-shadow:0 1px 6px rgba(11,25,41,.08)}
+.pdf-embed-bar{background:var(--navy);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.pdf-embed-bar span{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.pdf-embed-bar .pdf-meta{color:var(--slate);font-size:9px}
+.pdf-frame{width:100%;height:680px;border:none;display:block;background:#525659}
+
+/* FOOTER */
+.footer-note{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-family:var(--mono);font-size:9px;color:var(--slate);letter-spacing:.03em;line-height:1.9}
+
+@media(max-width:900px){
+  .trust-grid,.mech-grid{grid-template-columns:1fr}
+  .content{padding:20px 16px 60px}
+  .site-header,.tab-nav{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-name">Bay Harbor Re</span>
+      <span class="brand-div">|</span>
+      <span class="brand-doc">Trust Investment Guidelines</span>
+    </div>
+    <div class="header-meta">
+      <div>May 2026 · Internal Use Only</div>
+      <div>Finance &amp; Accounting</div>
+    </div>
+  </div>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('investments',this)">Permitted Investments</button>
+  <button class="tab-btn" onclick="showTab('mechanics',this)">Trust Mechanics</button>
+  <button class="tab-btn" onclick="showTab('agreements',this)">Trust Agreements</button>
+  <button class="tab-btn" onclick="showTab('additional',this)">Additional Assets <span class="tab-badge">Reference</span></button>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- TAB 1 — PERMITTED INVESTMENTS                                    -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<div id="tab-investments" class="panel active">
+<div class="content">
+
+  <div class="section-head">
+    <h2>Permitted Investments by Trust</h2>
+    <span class="section-tag">Source: Each Executed Agreement</span>
+  </div>
+  <p class="section-sub">Each card represents one trust. Rules are specific to that trust only — do not apply one trust's limits to another.</p>
+
+  <div class="trust-grid">
+
+    <!-- ── SUTTON SNIC ───────────────────────────────────────────── -->
+    <div class="trust-card">
+      <div class="trust-card-header hdr-sutton">
+        <div class="carrier-name">Sutton National Insurance Company</div>
+        <div class="carrier-meta">SNIC · Trustee: Comerica Bank &amp; Trust, N.A. · Executed Dec 1, 2025</div>
+        <div class="carrier-status"><span class="chip chip-green">✓ Executed</span></div>
+      </div>
+      <div class="rule-list">
+        <div class="rule-row"><div class="rule-label">Eligible Rating</div><div class="rule-val"><span class="chip chip-amber">AAA → BBB–</span> S&amp;P/Fitch BBB- or Moody's Baa3 minimum. Split ratings: use the middle of three agencies. <a class="cite" onclick="showClause('snic-rating')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">BBB– Cap</div><div class="rule-val"><span class="chip chip-amber">20% max</span> BBB- securities capped at 20% of portfolio at purchase. <a class="cite" onclick="showClause('snic-rating')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Post-Purchase Downgrade</div><div class="rule-val"><span class="chip chip-red">10% portfolio cap</span> Securities falling below BBB-/Baa3 after purchase may not exceed 10%. If exceeded: Sutton may withhold premium remittances. <a class="cite" onclick="showClause('snic-downgrade')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">US Treasuries</div><div class="rule-val"><span class="chip chip-green">Up to 100%</span> T-Bills, notes, bonds. No maturity cap. Subject to 7yr portfolio duration limit. TIPS and STRIPS excluded. <a class="cite" onclick="showClause('snic-govts')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Explicit Fed Agencies</div><div class="rule-val"><span class="chip chip-green">Up to 100%</span> Counted within same bucket as Treasuries (FHLB, FFCS, GNMA). <a class="cite" onclick="showClause('snic-govts')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">GSEs (Fannie/Freddie)</div><div class="rule-val"><span class="chip chip-amber">50% max</span> Implicitly guaranteed. Exempt from individual issue concentration limits. <a class="cite" onclick="showClause('snic-govts')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Corporate Bonds</div><div class="rule-val"><span class="chip chip-amber">65% max</span> Or 2× index allocation, whichever greater. Includes collateralized corp and munis. <a class="cite" onclick="showClause('snic-govts')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Agency MBS (total)</div><div class="rule-val"><span class="chip chip-amber">25% max</span> REMICs, CMOs, pass-throughs, TBAs. Max 5% per agency issuer. TBAs must be backed by cash/equivalents. <a class="cite" onclick="showClause('snic-mbs')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">CMBS</div><div class="rule-val"><span class="chip chip-amber">20% max</span> Counted within the 25% MBS limit — not additive. <a class="cite" onclick="showClause('snic-cmbs')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">ABS (non-MBS)</div><div class="rule-val"><span class="chip chip-amber">20% max</span> Separate from the 25% MBS limit. <a class="cite" onclick="showClause('snic-abs')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Non-Agency MBS</div><div class="rule-val"><span class="chip chip-red">Not permitted</span> Exception only if Fannie/Freddie lose GSE status and no replacement is mandated. <a class="cite" onclick="showClause('snic-nonagency')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Single Issuer/Issue</div><div class="rule-val"><span class="chip chip-amber">5% max</span> No single corporate creditor &gt;5% at purchase. Also capped at 2% of obligor's total outstanding. Corp bonds: min $10M original issue size. <a class="cite" onclick="showClause('snic-issuer')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Per MBS/ABS Transaction</div><div class="rule-val"><span class="chip chip-amber">5% max</span> Of any single total securitized transaction. GSEs exempt. <a class="cite" onclick="showClause('snic-securitized')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Portfolio Duration</div><div class="rule-val"><span class="chip chip-amber">0–7 years</span> Modified adjusted duration on total fixed income portfolio. <a class="cite" onclick="showClause('snic-duration')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Cash Equiv. Single Instr.</div><div class="rule-val"><span class="chip chip-amber">10% max</span> No single instrument with &lt;90 day maturity to exceed 10% of portfolio. Exception for approved rebalance trades. <a class="cite" onclick="showClause('snic-cashcap')">Exhibit A</a></div></div>
+        <div class="rule-row"><div class="rule-label">Securities Lending</div><div class="rule-val"><span class="chip chip-red">Prohibited</span> No repo, pledge, or lending of trust assets. <a class="cite" onclick="showClause('snic-lending')">Exhibit A</a></div></div>
+      </div>
+    </div>
+
+    <!-- ── SUTTON SSIC ───────────────────────────────────────────── -->
+    <div class="trust-card">
+      <div class="trust-card-header hdr-sutton">
+        <div class="carrier-name">Sutton Specialty Insurance Company</div>
+        <div class="carrier-meta">SSIC · Trustee: Comerica Bank &amp; Trust, N.A. · Executed Dec 1, 2025</div>
+        <div class="carrier-status"><span class="chip chip-green">✓ Executed</span></div>
+      </div>
+      <div class="rule-list">
+        <div class="rule-row"><div class="rule-label">Investment Language</div><div class="rule-val"><span class="chip chip-green">Identical to SNIC</span> SSIC Exhibit A is word-for-word the same as SNIC. All limits, caps, and restrictions above apply equally. See SNIC card for full detail. <a class="cite" onclick="showClause('snic-rating')">Exhibit A (same)</a></div></div>
+        <div class="rule-row"><div class="rule-label">Eligible Rating</div><div class="rule-val"><span class="chip chip-amber">AAA → BBB–</span> BBB- cap: 20% of portfolio. Split ratings: middle of three agencies.</div></div>
+        <div class="rule-row"><div class="rule-label">US Treasuries</div><div class="rule-val"><span class="chip chip-green">Up to 100%</span> No maturity cap. 7yr portfolio duration limit. TIPS/STRIPS excluded.</div></div>
+        <div class="rule-row"><div class="rule-label">Corp Bonds</div><div class="rule-val"><span class="chip chip-amber">65% max</span> 5% per issuer. 2% of obligor's outstanding. $10M min issue.</div></div>
+        <div class="rule-row"><div class="rule-label">Agency MBS</div><div class="rule-val"><span class="chip chip-amber">25% max</span> CMBS within 25%. ABS 20% separate. Non-agency MBS not permitted.</div></div>
+        <div class="rule-row"><div class="rule-label">Portfolio Duration</div><div class="rule-val"><span class="chip chip-amber">0–7 years</span> Modified adjusted duration on total portfolio.</div></div>
+        <div class="rule-row"><div class="rule-label">Downgrade Rule</div><div class="rule-val"><span class="chip chip-red">10% portfolio cap</span> Breach → SSIC may withhold premium remittances.</div></div>
+        <div class="rule-row"><div class="rule-label">Securities Lending</div><div class="rule-val"><span class="chip chip-red">Prohibited</span></div></div>
+      </div>
+    </div>
+
+    <!-- ── CLEAR BLUE ────────────────────────────────────────────── -->
+    <div class="trust-card">
+      <div class="trust-card-header hdr-clearblue">
+        <div class="carrier-name">Clear Blue (CBIC, CBSIC, Rock Ridge, Highlander)</div>
+        <div class="carrier-meta">Trustee: Fifth Third Bank, N.A. (succ. Comerica) · Executed Feb–Mar 2026</div>
+        <div class="carrier-status"><span class="chip chip-green">✓ Executed</span></div>
+      </div>
+      <div class="rule-list">
+        <div class="rule-row"><div class="rule-label">Cash / Cash Equiv.</div><div class="rule-val"><span class="chip chip-green">✓ Permitted</span> US legal tender and cash equivalents. <a class="cite" onclick="showClause('cb-assets')">Exhibit B</a></div></div>
+        <div class="rule-row"><div class="rule-label">US Treasuries</div><div class="rule-val"><span class="chip chip-green">✓ Permitted</span> <span class="chip chip-amber">≤5 yr duration</span> Hard 5-year duration cap. No exceptions. <a class="cite" onclick="showClause('cb-assets')">Exhibit B</a></div></div>
+        <div class="rule-row"><div class="rule-label">State &amp; Muni Bonds</div><div class="rule-val"><span class="chip chip-amber">A-rated or higher</span> <span class="chip chip-amber">≤5 yr duration</span> <a class="cite" onclick="showClause('cb-assets')">Exhibit B</a></div></div>
+        <div class="rule-row"><div class="rule-label">US Domestic Corp Bonds</div><div class="rule-val"><span class="chip chip-amber">BBB or higher</span> <span class="chip chip-amber">≤5 yr duration</span> <span class="chip chip-amber">20% max of portfolio</span> Domestic corp bonds only. <a class="cite" onclick="showClause('cb-assets')">Exhibit B</a></div></div>
+        <div class="rule-row"><div class="rule-label">MBS</div><div class="rule-val"><span class="chip chip-amber">Permitted — no explicit cap</span> Mortgage-Backed Securities listed as permitted. No separate cap stated in Exhibit B. No CMBS/ABS language. <a class="cite" onclick="showClause('cb-assets')">Exhibit B</a></div></div>
+        <div class="rule-row"><div class="rule-label">Bond Ratings Agency</div><div class="rule-val">S&amp;P or Moody's. <a class="cite" onclick="showClause('cb-assets')">Exhibit B</a></div></div>
+        <div class="rule-row"><div class="rule-label">Duration — All Assets</div><div class="rule-val"><span class="chip chip-red">5 years max</span> Hard cap across all permitted asset classes. No carve-outs. <a class="cite" onclick="showClause('cb-assets')">Exhibit B</a></div></div>
+        <div class="rule-row"><div class="rule-label">Portfolio Duration Rule</div><div class="rule-val"><span class="rule-na">Not specified</span> Clear Blue uses a maturity cap (≤5yr per security), not a portfolio-level duration target.</div></div>
+        <div class="rule-row"><div class="rule-label">Downgrade Rule</div><div class="rule-val"><span class="rule-na">Not specified</span> No post-purchase downgrade cap in Clear Blue's Exhibit B.</div></div>
+        <div class="rule-row"><div class="rule-label">CMBS / ABS</div><div class="rule-val"><span class="rule-na">Not addressed</span> Not listed as permitted or prohibited in Exhibit B. Confirm with Clear Blue before including.</div></div>
+        <div class="rule-row"><div class="rule-label">Asset Definition</div><div class="rule-val">NAIC-1 rated securities and anything authorized under Texas insurance law for domestic insurers. Must comply with Exhibit B and be acceptable to Beneficiary. <a class="cite" onclick="showClause('cb-assetdef')">§ 2</a></div></div>
+        <div class="rule-row"><div class="rule-label">Investment Authority</div><div class="rule-val">Requires prior written instructions from Grantor + prior written consent of Beneficiary for each investment. Stricter than Sutton. <a class="cite" onclick="showClause('cb-authority')">§ 5</a></div></div>
+        <div class="rule-row"><div class="rule-label">Beneficiary Consent</div><div class="rule-val"><span class="chip chip-red">Joint consent required</span> All four entities (CBIC, CBSIC, Rock Ridge, Highlander) must jointly provide written consent for investments and withdrawals. <a class="cite" onclick="showClause('cb-joint')">§ 34</a></div></div>
+      </div>
+    </div>
+
+    <!-- ── TRISURA ────────────────────────────────────────────────── -->
+    <div class="trust-card">
+      <div class="trust-card-header hdr-trisura">
+        <div class="carrier-name">Trisura (TSIC, TIC, Bricktown)</div>
+        <div class="carrier-meta">Trustee: TBD · BH Amended Trust · May 12, 2026</div>
+        <div class="carrier-status"><span class="chip chip-amber">⚠ Exhibit A Blank</span></div>
+      </div>
+      <div class="tbd-body">
+        <p><strong>Permitted Securities exhibit (Exhibit A) is not yet populated.</strong> The trust agreement structure is executed, but the investment guidelines have not been finalized with Trisura.</p>
+        <p style="margin-top:10px">Do not direct any trades into the Trisura trust account until Bay Harbor Re Finance confirms the finalized Exhibit A. Contact Chris O'Connor.</p>
+        <p style="margin-top:10px;font-size:11px;color:var(--amber)">Structure note: This is a cross-collateralized trust. Any of the three beneficiaries (Trisura Specialty, Trisura Insurance, Bricktown Specialty) can submit a withdrawal notice independently without consent of the others. <a class="cite" onclick="showClause('trisura-struct')">§ 2.9(a)</a></p>
+      </div>
+    </div>
+
+    <!-- ── ACCREDITED ─────────────────────────────────────────────── -->
+    <div class="trust-card">
+      <div class="trust-card-header hdr-accredited">
+        <div class="carrier-name">Accredited Surety and Casualty Company</div>
+        <div class="carrier-meta">Trustee: Pinnacle Bank · Draft — Not Yet Executed</div>
+        <div class="carrier-status"><span class="chip chip-amber">⚠ Exhibit B Blank</span> <span class="chip chip-grey">Draft</span></div>
+      </div>
+      <div class="tbd-body">
+        <p><strong>Investment Guidelines (Exhibit B) is not yet populated, and the trust agreement is not yet executed.</strong></p>
+        <p style="margin-top:10px">Asset definition references Florida insurance law standards for domestic insurer investments plus anything acceptable to Beneficiary. Certificates of deposit (US bank, USD payable) are explicitly listed as eligible assets alongside cash. <a class="cite" onclick="showClause('accred-assets')">§ 2</a></p>
+        <p style="margin-top:10px">Do not direct trades into this account until the agreement is executed and Exhibit B is finalized. Contact Chris O'Connor for status.</p>
+        <p style="margin-top:10px;font-size:11px;color:var(--amber)">Note: Income withdrawals (interest, realized gains, dividends) limited to one per calendar month per the draft agreement — different from Sutton which has no such limit. <a class="cite" onclick="showClause('accred-income')">§ 12</a></p>
+      </div>
+    </div>
+
+  </div><!-- /trust-grid -->
+
+  <div class="footer-note">
+    Sources: SNIC Trust Agreement (Executed Dec 1, 2025, Comerica) · SSIC Trust Agreement (Executed Dec 1, 2025, Comerica) · Clear Blue Trust Agreement (Executed Feb–Mar 2026, Fifth Third/Comerica) · Trisura BH Amended Trust (May 12, 2026, Trustee TBD) · Accredited/Pinnacle Bank draft (not executed). All § citations reference the applicable trust agreement as noted on each card.
+  </div>
+</div>
+</div>
+
+
+
+<div id="tab-mechanics" class="panel">
+<div class="content">
+
+  <div class="section-head">
+    <h2>Trust Mechanics by Agreement</h2>
+    <span class="section-tag">Segregated by Trust</span>
+  </div>
+  <p class="section-sub">Each trust operates differently. Rules below are specific to that trust — do not assume mechanics from one apply to another.</p>
+
+  <!-- ══ SNIC ══════════════════════════════════════════════════════ -->
+  <div class="section-head" style="margin-top:32px">
+    <h2>Sutton National Insurance Company (SNIC)</h2>
+    <span class="section-tag">Comerica · Executed Dec 2025</span>
+  </div>
+  <p class="section-sub">Trustee: Comerica Bank &amp; Trust, N.A. · Governing law: Michigan · Regulatory reference: Oklahoma insurance law</p>
+  <div class="mech-grid">
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Investment Direction</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Authorization</div><div class="mech-detail">Bay Harbor Re written approval required. Investment manager directions flow through as designated advisor. No per-trade Beneficiary consent needed. <a class="cite" onclick="showClause('mech-invest')">§ 3.1 / 3.3</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Trustee compliance duty</div><div class="mech-detail">None. Trustee will not verify assets meet Permitted Investment requirements. <a class="cite" onclick="showClause('mech-trusteeduty')">§ 3.1</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Unclear instructions</div><div class="mech-detail">Assets held uninvested up to 30 calendar days pending resolution. <a class="cite" onclick="showClause('mech-unclear')">§ 3.4</a></div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Withdrawals &amp; Income</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Beneficiary withdrawal</div><div class="mech-detail">Written Withdrawal Notice. Bay Harbor Re has <strong>15 business days</strong> to object. No objection = deemed consent. <a class="cite" onclick="showClause('mech-withdrawal')">§ 2.9(a)/(b)</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Income withdrawal</div><div class="mech-detail">Bay Harbor Re can pull interest, dividends, realized gains by written request at any time. No Beneficiary consent needed. Unlimited frequency. <a class="cite" onclick="showClause('mech-income')">§ 5.1</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Asset substitutions</div><div class="mech-detail">Grantor written request + Beneficiary written consent. Replacement must be ≥ market value. <a class="cite" onclick="showClause('mech-sub')">§ 3.1</a></div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Reporting &amp; Valuation</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Monthly statements</div><div class="mech-detail">Issued within 20 days of month-end. 60-day objection window — after which deemed approved. <a class="cite" onclick="showClause('mech-reporting')">§ 2.6</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Deposit/withdrawal notices</div><div class="mech-detail">Trustee notifies both parties within 10 days. Access via Comerica Trust Online. <a class="cite" onclick="showClause('mech-reporting')">§ 2.8</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Pricing</div><div class="mech-detail">Fixed income matrix-priced. Not always real-time. Trustee has no liability for inaccuracies. <a class="cite" onclick="showClause('mech-pricing')">§ 3.5</a></div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Capital Actions &amp; Custody</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Capital actions</div><div class="mech-detail">Grantor authorization only required. Trustee will attempt to notify Bay Harbor Re of voluntary actions but is not obligated. No authorization = no action, no liability. <a class="cite" onclick="showClause('mech-capital')">§ 6.6</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Custody</div><div class="mech-detail">Comerica Bank &amp; Trust, N.A. Assets held in Fed Book-Entry or DTCC. All assets must be in fully negotiable form and maintained in the US. <a class="cite" onclick="showClause('mech-custody')">§ 6.1</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Contact</div><div class="mech-detail">Marvin J. Turner · mjturner@comerica.com · 411 West Lafayette Blvd, Detroit MI 48226 · Fax: (313) 222-7170</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SSIC ══════════════════════════════════════════════════════ -->
+  <div class="section-head" style="margin-top:8px">
+    <h2>Sutton Specialty Insurance Company (SSIC)</h2>
+    <span class="section-tag">Comerica · Executed Dec 2025</span>
+  </div>
+  <p class="section-sub">Trustee: Comerica Bank &amp; Trust, N.A. · Governing law: Michigan · Regulatory reference: Oklahoma insurance law</p>
+  <div class="mech-grid">
+    <div class="mech-card" style="grid-column:1/-1">
+      <div class="mech-card-hdr"><h3>All Mechanics — Identical to SNIC</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Full parity with SNIC</div><div class="mech-detail">The SSIC trust agreement is word-for-word identical to SNIC across all sections including investment direction, withdrawal procedures, income rights, reporting cadence, capital actions, and custody. The 15-business-day objection window, Grantor-only authorization model, and all other mechanics above apply equally to SSIC. Refer to the SNIC mechanics above in full.</div></div>
+        <div class="mech-row"><div class="mech-topic">Contact</div><div class="mech-detail">Marvin J. Turner · mjturner@comerica.com · 411 West Lafayette Blvd, Detroit MI 48226 · Fax: (313) 222-7170</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CLEAR BLUE ═════════════════════════════════════════════════ -->
+  <div class="section-head" style="margin-top:8px">
+    <h2>Clear Blue (CBIC, CBSIC, Rock Ridge, Highlander)</h2>
+    <span class="section-tag">Fifth Third Bank · Executed Feb–Mar 2026</span>
+  </div>
+  <p class="section-sub">Trustee: Fifth Third Bank, N.A. (successor by merger to Comerica Bank &amp; Trust, N.A.) · Governing law: Texas / situs Michigan · Regulatory reference: Texas insurance law</p>
+  <div class="mech-grid">
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Investment Direction — Stricter Than Sutton</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Authorization required</div><div class="mech-detail">Requires <strong>both</strong> Grantor written instructions AND <strong>prior written consent of Beneficiary</strong> for each investment. Unlike Sutton where Grantor direction alone is sufficient. <a class="cite" onclick="showClause('cb-authority')">§ 5</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Joint Beneficiary consent</div><div class="mech-detail">All four entities (Clear Blue Insurance, Clear Blue Specialty, Rock Ridge, Highlander) must jointly provide written consent. Every investment and capital action needs all four. <a class="cite" onclick="showClause('cb-joint')">§ 34</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Trustee compliance duty</div><div class="mech-detail">None. Trustee will not verify permitted investment compliance. Same as Sutton.</div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Withdrawals &amp; Income</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Beneficiary withdrawal</div><div class="mech-detail"><strong>Sole discretion, any time, without advance notice to Bay Harbor Re.</strong> No 15-day objection window. Immediate upon written demand. <a class="cite" onclick="showClause('cb-withdrawal')">§ 10</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Income withdrawal</div><div class="mech-detail">Bay Harbor Re can pull income (dividends, interest) by written request without further Beneficiary authorization. Unlimited frequency. <a class="cite" onclick="showClause('cb-income')">§ 12</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Asset substitutions</div><div class="mech-detail">Grantor written request + Beneficiary written consent. Replacement ≥ market value. Beneficiary consent not to be unreasonably withheld. <a class="cite" onclick="showClause('cb-authority')">§ 5(a)(2)</a></div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Reporting &amp; Valuation</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Monthly statements</div><div class="mech-detail">Issued within 20 days of month-end. Shows all assets, earnings, losses, fair market value. Deposit/withdrawal notices within 10 days.</div></div>
+        <div class="mech-row"><div class="mech-topic">Pricing</div><div class="mech-detail">Matrix-priced fixed income. Same methodology and Trustee non-liability as Sutton accounts.</div></div>
+        <div class="mech-row"><div class="mech-topic">Inspection rights</div><div class="mech-detail">Texas DOI and other state commissioners have explicit inspection rights over trust books and assets under this agreement — broader than Sutton.</div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Capital Actions &amp; Custody</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Capital actions</div><div class="mech-detail">Grantor instruction + Beneficiary written consent required — unlike Sutton (Grantor only). No action without both. <a class="cite" onclick="showClause('accred-capital')">§ 6 (equivalent)</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Custody</div><div class="mech-detail">Fifth Third Bank, N.A. Assets held in Fed Book-Entry or DTCC. All assets in fully negotiable form, maintained in the US.</div></div>
+        <div class="mech-row"><div class="mech-topic">Contact</div><div class="mech-detail">Ben Botkin · blbotkin@comerica.com · 36455 Corporate Dr MC 3462, Farmington Hills MI 48331 · Tel: (313) 222-9551</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TRISURA ════════════════════════════════════════════════════ -->
+  <div class="section-head" style="margin-top:8px">
+    <h2>Trisura (TSIC, TIC, Bricktown) — Cross-Collateralized</h2>
+    <span class="section-tag">Trustee TBD · BH Amended May 2026</span>
+  </div>
+  <p class="section-sub">Trustee: TBD · Governing law: Michigan · Permitted Securities Exhibit A: not yet populated</p>
+  <div class="mech-grid">
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Investment Direction</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Authorization</div><div class="mech-detail">Bay Harbor Re written approval required. Investment manager directions flow through as designated advisor. Same model as Sutton. <a class="cite" onclick="showClause('mech-invest')">§ 3.1 / 3.3</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Permitted Securities</div><div class="mech-detail"><strong>Exhibit A is blank.</strong> Do not direct trades until Bay Harbor Re Finance confirms finalized exhibit. Contact Chris O'Connor. <a class="cite" onclick="showClause('trisura-struct')">§ 3.1</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Unclear instructions</div><div class="mech-detail">Assets held uninvested up to 30 days. Same as Sutton. <a class="cite" onclick="showClause('mech-unclear')">§ 3.4</a></div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Withdrawals — Key Structural Difference</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Independent draw right</div><div class="mech-detail"><strong>Any of the three Beneficiaries (TSIC, TIC, Bricktown) can submit a Withdrawal Notice independently — without consent of the other two.</strong> Each can draw to satisfy their own obligations from the single pooled trust. <a class="cite" onclick="showClause('trisura-struct')">§ 2.9(a)</a></div></div>
+        <div class="mech-row"><div class="mech-topic">No objection window</div><div class="mech-detail">The agreement does not include the 15-business-day objection window that Sutton provides. Monitor required reserve closely at all times.</div></div>
+        <div class="mech-row"><div class="mech-topic">Income withdrawal</div><div class="mech-detail">Bay Harbor Re can withdraw interest and dividends by written request. No Beneficiary consent required. <a class="cite" onclick="showClause('mech-income')">§ 5.1</a></div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Reporting &amp; Custody</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Monthly statements</div><div class="mech-detail">Issued within 20 days of month-end. 60-day objection window. Deposit/withdrawal notices within 10 days.</div></div>
+        <div class="mech-row"><div class="mech-topic">Custody</div><div class="mech-detail">Trustee TBD. All assets must be maintained in the US in fully negotiable form. Same custody standards as other trusts.</div></div>
+        <div class="mech-row"><div class="mech-topic">Contact</div><div class="mech-detail">Trisura: Stephanie Seligman · stephanie.seligman@trisura.com · 210 Park Ave Suite 1300, Oklahoma City OK 73102. Trustee contact: TBD.</div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Capital Actions</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Authorization</div><div class="mech-detail">Grantor written authorization required. Same model as Sutton — Grantor direction alone (no Beneficiary consent per action). <a class="cite" onclick="showClause('mech-capital')">§ 6.6</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Trustee notification</div><div class="mech-detail">Trustee will attempt to notify Bay Harbor Re of voluntary capital actions but is not obligated. Track proactively.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ACCREDITED ════════════════════════════════════════════════ -->
+  <div class="section-head" style="margin-top:8px">
+    <h2>Accredited Surety and Casualty Company</h2>
+    <span class="section-tag">Pinnacle Bank · Draft — Not Executed</span>
+  </div>
+  <p class="section-sub">Trustee: Pinnacle Bank · Governing law: Florida · Investment Guidelines Exhibit B: not yet populated · Agreement not yet executed</p>
+  <div class="mech-grid">
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Investment Direction — Similar to Clear Blue</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Authorization</div><div class="mech-detail">Grantor written instructions + Beneficiary written consent required per investment. Same model as Clear Blue — stricter than Sutton. <a class="cite" onclick="showClause('cb-authority')">§ 5 (equivalent)</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Permitted investments</div><div class="mech-detail"><strong>Exhibit B is blank and agreement is not yet executed.</strong> Do not direct trades. Contact Chris O'Connor. <a class="cite" onclick="showClause('accred-assets')">§ 2</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Trustee compliance duty</div><div class="mech-detail">None. Trustee will not verify compliance. Same as all other trusts.</div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Withdrawals &amp; Income</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Beneficiary withdrawal</div><div class="mech-detail">Sole discretion, any time, without advance notice to Bay Harbor Re. No objection window — same as Clear Blue. <a class="cite" onclick="showClause('accred-withdrawal')">§ 10</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Income withdrawal</div><div class="mech-detail">Bay Harbor Re can pull income by written request. <strong>Limited to one withdrawal per calendar month</strong> — different from all other trusts. <a class="cite" onclick="showClause('accred-income')">§ 12</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Asset substitutions</div><div class="mech-detail">Grantor written request + Beneficiary written consent. Beneficiary consent not to be unreasonably withheld. Replacement ≥ market value.</div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Reporting &amp; Valuation</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Monthly statements</div><div class="mech-detail">Issued within 20 days of month-end. 60-day objection window. Deposit/withdrawal notices within 10 days. Access via Pinnacle Trust Online.</div></div>
+        <div class="mech-row"><div class="mech-topic">Pricing</div><div class="mech-detail">Matrix-priced fixed income. Same methodology and Trustee non-liability as other trusts.</div></div>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-hdr"><h3>Capital Actions &amp; Custody</h3></div>
+      <div>
+        <div class="mech-row"><div class="mech-topic">Capital actions</div><div class="mech-detail">Grantor instruction + Beneficiary written consent required. Same as Clear Blue — not Grantor-only like Sutton. <a class="cite" onclick="showClause('accred-capital')">§ 6</a></div></div>
+        <div class="mech-row"><div class="mech-topic">Custody</div><div class="mech-detail">Pinnacle Bank. Assets in Fed Book-Entry or DTCC. Fully negotiable form, maintained in the US.</div></div>
+        <div class="mech-row"><div class="mech-topic">Contact</div><div class="mech-detail">David Shamblin · David.Shamblin@pnfp.com · 801 Broad St, Chattanooga TN 37402 · 423-386-2307. Beneficiary: Marney Emel · Marney.emel@accreditedinsurance.com</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prohibit-card" style="margin-top:32px">
+    <div class="prohibit-hdr"><h3>Absolute Prohibitions — All Trust Agreements</h3></div>
+    <div class="prohibit-row">Securities lending — no repo, pledge, or lending of trust assets. Explicit in Sutton; consistent across all structures. <a class="cite" onclick="showClause('snic-lending')">Exhibit A (SNIC)</a></div>
+    <div class="prohibit-row">Affiliate / parent / subsidiary securities — no securities issued by or held in a parent, subsidiary, or affiliate of Bay Harbor Re or any Beneficiary. All agreements. <a class="cite" onclick="showClause('mech-affiliate')">§ 2.1 (SNIC)</a></div>
+    <div class="prohibit-row">Trust assets for Trustee fees — Trustee fees paid by Bay Harbor Re outside the trust. All agreements explicitly prohibit using trust assets for this purpose.</div>
+    <div class="prohibit-row">Equity / common stock — not a permitted investment in any agreement.</div>
+    <div class="prohibit-row">Sub-investment-grade purchases — Sutton floor is BBB-/Baa3; Clear Blue floor is BBB. No purchases below each agreement's respective floor.</div>
+    <div class="prohibit-row">Non-USD securities — all securities must be USD-denominated, maintained in the United States.</div>
+  </div>
+
+  <div class="footer-note">All § references correspond to the trust agreement labeled in each section. SNIC and SSIC are identical. Clear Blue and Accredited both require Beneficiary consent for investments and capital actions — materially stricter than Sutton. Trisura and Accredited should not receive trades until exhibits are finalized.</div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- TAB 3 — TRUST AGREEMENTS                                         -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<div id="tab-agreements" class="panel">
+<div class="content">
+  <div class="section-head">
+    <h2>Trust Agreements</h2>
+    <span class="section-tag">Source Documents</span>
+  </div>
+  <p class="section-sub">Click any trust to view its agreement. Clear Blue is the only fully executed agreement on file — embedded below. Others will display once uploaded to SharePoint.</p>
+
+  <!-- Trust selector buttons -->
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px">
+    <button class="agree-btn active" onclick="showAgreement('clearblue',this)">
+      <span class="agree-btn-name">Clear Blue</span>
+      <span class="agree-btn-status executed">✓ Executed</span>
+    </button>
+    <button class="agree-btn" onclick="showAgreement('snic',this)">
+      <span class="agree-btn-name">SNIC</span>
+      <span class="agree-btn-status executed">✓ Executed</span>
+    </button>
+    <button class="agree-btn" onclick="showAgreement('ssic',this)">
+      <span class="agree-btn-name">SSIC</span>
+      <span class="agree-btn-status executed">✓ Executed</span>
+    </button>
+    <button class="agree-btn" onclick="showAgreement('trisura',this)">
+      <span class="agree-btn-name">Trisura</span>
+      <span class="agree-btn-status pending">Draft</span>
+    </button>
+    <button class="agree-btn" onclick="showAgreement('accredited',this)">
+      <span class="agree-btn-name">Accredited</span>
+      <span class="agree-btn-status pending">Draft</span>
+    </button>
+  </div>
+
+  <!-- Agreement viewer panes -->
+  <div id="agree-clearblue" class="agree-pane active">
+    <div class="pdf-embed-wrap">
+      <div class="pdf-embed-bar">
+        <span>Clear Blue Insurance Co., et al. — Trust Agreement</span>
+        <span class="pdf-meta">· Fifth Third Bank, N.A. (succ. Comerica) · Executed Feb–Mar 2026 · 12 pages incl. Exhibit B</span>
+      </div>
+      <iframe class="pdf-frame" src="https://YOUR-SHAREPOINT-URL/Bay_Harbor_-_Reinsurance_Trust_Agreement_with_Clear_Blue__Executed_All_Parties_.pdf" title="Clear Blue Trust Agreement"></iframe>
+    </div>
+    <div class="agree-meta-row">
+      <div class="agree-meta-item"><span class="agree-meta-label">Beneficiaries</span><span>Clear Blue Insurance Co., Clear Blue Specialty Insurance Co., Rock Ridge Insurance Co., Highlander Specialty Insurance Co.</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Trustee</span><span>Fifth Third Bank, N.A. (successor by merger to Comerica Bank &amp; Trust, N.A.)</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Effective Date</span><span>March 1, 2026</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Governing Law</span><span>Texas (situs: Michigan)</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Exhibit B</span><span class="chip chip-green">Populated — see final pages</span></div>
+    </div>
+    <p class="agree-sharepoint-note">To enable the embedded PDF: upload the file to SharePoint and replace <code>https://YOUR-SHAREPOINT-URL/</code> in this HTML with the direct SharePoint file link.</p>
+  </div>
+
+  <div id="agree-snic" class="agree-pane">
+    <div class="agree-placeholder hdr-sutton">
+      <div class="agree-placeholder-icon">📄</div>
+      <div class="agree-placeholder-name">Sutton National Insurance Company (SNIC)</div>
+      <div class="agree-placeholder-sub">Reinsurance Trust Agreement · Comerica Bank &amp; Trust, N.A. · Executed Dec 1, 2025</div>
+      <a class="agree-upload-link" href="https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx" target="_blank">↗ Upload to SharePoint &amp; update link</a>
+    </div>
+    <div class="agree-meta-row">
+      <div class="agree-meta-item"><span class="agree-meta-label">Beneficiary</span><span>Sutton National Insurance Company</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Trustee</span><span>Comerica Bank &amp; Trust, N.A.</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Effective Date</span><span>December 1, 2025</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Governing Law</span><span>Michigan</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Exhibit A</span><span class="chip chip-green">Populated — Permitted Securities defined</span></div>
+    </div>
+  </div>
+
+  <div id="agree-ssic" class="agree-pane">
+    <div class="agree-placeholder hdr-sutton">
+      <div class="agree-placeholder-icon">📄</div>
+      <div class="agree-placeholder-name">Sutton Specialty Insurance Company (SSIC)</div>
+      <div class="agree-placeholder-sub">Reinsurance Trust Agreement · Comerica Bank &amp; Trust, N.A. · Executed Dec 1, 2025</div>
+      <a class="agree-upload-link" href="https://YOUR-SHAREPOINT-URL/SSIC-Trust.docx" target="_blank">↗ Upload to SharePoint &amp; update link</a>
+    </div>
+    <div class="agree-meta-row">
+      <div class="agree-meta-item"><span class="agree-meta-label">Beneficiary</span><span>Sutton Specialty Insurance Company</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Trustee</span><span>Comerica Bank &amp; Trust, N.A.</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Effective Date</span><span>December 1, 2025</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Governing Law</span><span>Michigan</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Exhibit A</span><span class="chip chip-green">Populated — identical language to SNIC</span></div>
+    </div>
+  </div>
+
+  <div id="agree-trisura" class="agree-pane">
+    <div class="agree-placeholder hdr-trisura">
+      <div class="agree-placeholder-icon">📄</div>
+      <div class="agree-placeholder-name">Trisura (TSIC, TIC, Bricktown) — BH Amended Trust</div>
+      <div class="agree-placeholder-sub">Reinsurance Trust Agreement · Trustee TBD · Amended May 12, 2026</div>
+      <a class="agree-upload-link" href="https://YOUR-SHAREPOINT-URL/Trisura-BH-Amended.docx" target="_blank">↗ Upload to SharePoint &amp; update link</a>
+    </div>
+    <div class="agree-meta-row">
+      <div class="agree-meta-item"><span class="agree-meta-label">Beneficiaries</span><span>Trisura Specialty Insurance Co., Trisura Insurance Co., Bricktown Specialty Insurance Co.</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Trustee</span><span>TBD</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Structure</span><span>Cross-collateralized — any Beneficiary may draw independently</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Governing Law</span><span>Michigan</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Exhibit A</span><span class="chip chip-amber">⚠ Blank — investment guidelines not yet defined</span></div>
+    </div>
+  </div>
+
+  <div id="agree-accredited" class="agree-pane">
+    <div class="agree-placeholder hdr-accredited">
+      <div class="agree-placeholder-icon">📄</div>
+      <div class="agree-placeholder-name">Accredited Surety and Casualty Company — Pinnacle Bank</div>
+      <div class="agree-placeholder-sub">Reinsurance Trust Agreement · Pinnacle Bank · Draft — Not Yet Executed</div>
+      <a class="agree-upload-link" href="https://YOUR-SHAREPOINT-URL/Accredited-Pinnacle-Draft.docx" target="_blank">↗ Upload to SharePoint &amp; update link</a>
+    </div>
+    <div class="agree-meta-row">
+      <div class="agree-meta-item"><span class="agree-meta-label">Beneficiary</span><span>Accredited Surety and Casualty Company, Inc.</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Trustee</span><span>Pinnacle Bank (David Shamblin · David.Shamblin@pnfp.com)</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Status</span><span class="chip chip-amber">Draft — not executed</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Governing Law</span><span>Florida</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Exhibit B</span><span class="chip chip-amber">⚠ Blank — investment guidelines not yet defined</span></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- TAB 4 — ADDITIONAL ASSETS (REFERENCE)                            -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<div id="tab-additional" class="panel">
+<div class="content">
+  <div class="notice notice-warn" style="background:var(--blue-bg);border-color:#b0c8e8;border-left-color:var(--blue)">
+    <span style="color:var(--blue)">ℹ</span>
+    <div style="color:var(--blue)">These asset classes are permitted under certain agreements but are not part of the primary investment universe for Bay Harbor Re. Applicable mainly to Sutton accounts (SNIC/SSIC). Confirm eligibility under other carrier agreements before using.</div>
+  </div>
+
+  <div class="section-head"><h2>Additional Permitted Assets</h2><span class="section-tag">Sutton Only Unless Noted</span></div>
+  <p class="section-sub">Collapsed by default. Click to expand.</p>
+
+  <div class="accord-item" id="acc-gse">
+    <div class="accord-hdr" onclick="toggleAccord('acc-gse')">
+      <h4>GSEs — Fannie Mae / Freddie Mac (Implicit Guarantee)</h4><span class="chev">▼</span>
+    </div>
+    <div class="accord-body">
+      <div class="rule-row"><div class="rule-label">SNIC / SSIC</div><div class="rule-val"><span class="chip chip-amber">50% max of portfolio</span> Exempt from individual issue concentration limits. Counted separately from the explicit agency/Treasury 100% bucket. <a class="cite" onclick="showClause('snic-govts')">Exhibit A (SNIC)</a></div></div>
+      <div class="rule-row"><div class="rule-label">Clear Blue</div><div class="rule-val"><span class="rule-na">Not listed</span> Not explicitly permitted in Clear Blue Exhibit B.</div></div>
+      <div class="rule-row"><div class="rule-label">Trisura / Accredited</div><div class="rule-val"><span class="rule-na">TBD</span></div></div>
+    </div>
+  </div>
+
+  <div class="accord-item" id="acc-cp">
+    <div class="accord-hdr" onclick="toggleAccord('acc-cp')">
+      <h4>Commercial Paper</h4><span class="chev">▼</span>
+    </div>
+    <div class="accord-body">
+      <div class="rule-row"><div class="rule-label">SNIC / SSIC</div><div class="rule-val"><span class="chip chip-green">✓ Permitted</span> <span class="chip chip-amber">A-1 / P-1 only</span> A-1+ (S&amp;P/Fitch) AND P-1 (Moody's). USD only. Euro CP must be collateralized by A-1/P-1 entity. Single instrument: 10% portfolio cap. <a class="cite" onclick="showClause('snic-cp')">Exhibit A (SNIC)</a></div></div>
+      <div class="rule-row"><div class="rule-label">Clear Blue</div><div class="rule-val"><span class="rule-na">Not listed in Exhibit B</span></div></div>
+    </div>
+  </div>
+
+  <div class="accord-item" id="acc-frn">
+    <div class="accord-hdr" onclick="toggleAccord('acc-frn')">
+      <h4>Floating Rate Notes (FRNs)</h4><span class="chev">▼</span>
+    </div>
+    <div class="accord-body">
+      <div class="rule-row"><div class="rule-label">SNIC / SSIC</div><div class="rule-val"><span class="chip chip-green">✓ Permitted</span> Final maturity ≤10 years. Interest resets ≤6 months. Must be IG-rated. <a class="cite" onclick="showClause('snic-frn')">Exhibit A (SNIC)</a></div></div>
+      <div class="rule-row"><div class="rule-label">Clear Blue</div><div class="rule-val"><span class="rule-na">Not addressed in Exhibit B</span></div></div>
+    </div>
+  </div>
+
+  <div class="accord-item" id="acc-nonus">
+    <div class="accord-hdr" onclick="toggleAccord('acc-nonus')">
+      <h4>Non-US Obligations (Supra-nationals &amp; Foreign Govts)</h4><span class="chev">▼</span>
+    </div>
+    <div class="accord-body">
+      <div class="rule-row"><div class="rule-label">SNIC / SSIC</div><div class="rule-val"><span class="chip chip-amber">20% total max</span> Supra-nationals: 5% max. Foreign govts: 10% max. All USD only. <a class="cite" onclick="showClause('snic-nonus')">Exhibit A (SNIC)</a></div></div>
+      <div class="rule-row"><div class="rule-label">Clear Blue</div><div class="rule-val"><span class="rule-na">Not listed — domestic securities only per Exhibit B language</span></div></div>
+    </div>
+  </div>
+
+  <div class="accord-item" id="acc-munis">
+    <div class="accord-hdr" onclick="toggleAccord('acc-munis')">
+      <h4>State &amp; Municipal Bonds</h4><span class="chev">▼</span>
+    </div>
+    <div class="accord-body">
+      <div class="rule-row"><div class="rule-label">SNIC / SSIC</div><div class="rule-val"><span class="chip chip-amber">Within 65% corp/muni bucket</span> Must be IG-rated (BBB- min). <a class="cite" onclick="showClause('snic-govts')">Exhibit A (SNIC)</a></div></div>
+      <div class="rule-row"><div class="rule-label">Clear Blue</div><div class="rule-val"><span class="chip chip-green">✓ Permitted</span> <span class="chip chip-amber">A-rated or higher</span> <span class="chip chip-amber">≤5yr maturity</span> Explicitly listed in Exhibit B. <a class="cite" onclick="showClause('cb-assets')">Exhibit B (Clear Blue)</a></div></div>
+    </div>
+  </div>
+
+  <div class="accord-item" id="acc-cd">
+    <div class="accord-hdr" onclick="toggleAccord('acc-cd')">
+      <h4>Certificates of Deposit</h4><span class="chev">▼</span>
+    </div>
+    <div class="accord-body">
+      <div class="rule-row"><div class="rule-label">Clear Blue</div><div class="rule-val"><span class="chip chip-green">✓ Permitted</span> Explicitly listed in § 2 asset definition. US bank, USD payable. <a class="cite" onclick="showClause('cb-assetdef')">§ 2 (Clear Blue)</a></div></div>
+      <div class="rule-row"><div class="rule-label">Accredited (draft)</div><div class="rule-val"><span class="chip chip-green">✓ Permitted</span> Explicitly listed in § 2 asset definition. US bank or located in US, USD payable. <a class="cite" onclick="showClause('accred-assets')">§ 2 (Accredited)</a></div></div>
+      <div class="rule-row"><div class="rule-label">SNIC / SSIC</div><div class="rule-val"><span class="chip chip-amber">Listed as acceptable short-term</span> In the short-term investments list in Exhibit A. <a class="cite" onclick="showClause('snic-shortterm')">Exhibit A (SNIC)</a></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- CONTRACT MODAL                                                    -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-hdr-left">
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-sub" id="modal-sub"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-label">EXACT CONTRACT LANGUAGE</div>
+      <div class="modal-clause" id="modal-clause"></div>
+      <div class="modal-label">PLAIN ENGLISH</div>
+      <div class="modal-context" id="modal-context"></div>
+      <a class="modal-link" id="modal-link" href="#" target="_blank">↗ View Full Contract on SharePoint</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function showAgreement(name,btn){
+  document.querySelectorAll('.agree-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.agree-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('agree-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+function showTab(name,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleAccord(id){document.getElementById(id).classList.toggle('open')}
+
+const CLAUSES={
+  'mech-custody':{title:'Custody, Asset Form & US Domicile',sub:'SNIC § 6.1',clause:'The Trustee shall receive, hold, and safeguard all Assets... and shall determine that all such Assets are in such form that the Beneficiary... may whenever necessary <strong>negotiate any such Assets, without consent or signature from the Grantor</strong>... provided, however, that <strong>all such assets shall be maintained in the United States</strong>.',context:'Two requirements: (1) All securities must be in fully negotiable/transferable form — the carrier can take and liquidate them without needing Bay Harbor Re\'s signature. (2) Everything must stay physically (or in book-entry terms) within the US. Assets may be held in the Federal Reserve Book-Entry System or DTCC.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-rating':{title:'Credit Quality — Rating Requirements',sub:'SNIC/SSIC Exhibit A',clause:'Any Debt Security, not in default, rated from AAA to <strong>BBB-</strong> by S&P or Fitch, or from Aaa to <strong>Baa3</strong> by Moody\'s. In case of a split rating among the three, the <strong>middle rating</strong> will be used. Limitation on BBB- securities will be at <strong>20% of the portfolio</strong>.',context:'Investment grade minimum at purchase is BBB-/Baa3. For split ratings across three agencies, use the median. The BBB- bucket is separately capped at 20% at time of purchase.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-downgrade':{title:'Post-Purchase Downgrade Rule',sub:'SNIC/SSIC Exhibit A',clause:'Total securities <strong>downgraded below BBB-/Baa3 subsequent to purchase may not exceed 10% of the portfolio</strong>. In the event that total securities downgraded below BBB-/Baa3 exceed 10% of the portfolio, the beneficiary reserves the right to <strong>withhold premium</strong>.',context:'Post-purchase downgrades to junk are tolerated up to 10% of portfolio. If that cap is breached, Sutton can withhold premium remittances. This is a key cash flow risk — a wave of downgrades can trigger premium holds.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-govts':{title:'US Governments, GSEs & Corporate Allocation',sub:'SNIC/SSIC Exhibit A',clause:'US Government securities including <strong>US Treasury Bills, notes and bonds</strong>, as well as <strong>explicitly guaranteed Federal Agencies</strong> may comprise up to <strong>100%</strong> of the portfolio. <strong>Implicitly guaranteed Government Sponsored Entities (GSE)</strong> may comprise no more than <strong>50%</strong> of the portfolio. <strong>Corporate obligations</strong>, including those with collateral, may comprise up to <strong>65%</strong> of the portfolio, or 2 times the Index allocation, whichever is greater.',context:'Three buckets: (1) Explicit Treasuries + Agencies uncapped at 100%; (2) GSEs capped at 50%, exempt from individual issue limits; (3) Corporate bonds (incl. munis) capped at 65% or 2× index. These interact — a portfolio can be 50% GSEs + 50% Treasuries, or 65% corp + 35% Treasuries.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-mbs':{title:'Mortgage-Backed Securities (MBS)',sub:'SNIC/SSIC Exhibit A',clause:'MBS may be purchased but may not exceed <strong>25% of the portfolio</strong>. No more than <strong>5% of the portfolio</strong> may be purchased of any one particular US Agency issuer. MBS may be issued by US Agencies and include, but are not limited to, <strong>REMICs, CMOs, Pass-Through and TBA</strong> purchases or sales. In the event that TBA contracts are entered into, they will be <strong>backed by cash and/or cash equivalents</strong> available for settlement.',context:'Agency MBS overall cap is 25%. Within that, no single agency issuer (FNMA, FHLMC, GNMA) can exceed 5%. TBAs must be fully cash-backed. CMBS and ABS have their own separate caps.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-cmbs':{title:'Commercial Mortgage-Backed Securities (CMBS)',sub:'SNIC/SSIC Exhibit A',clause:'CMBS may not exceed <strong>20% of the portfolio</strong> and are <strong>included in the overall MBS limit</strong>.',context:'CMBS is capped at 20% — but this counts toward the 25% MBS cap. Not additive. If you hold 20% CMBS, you can only hold 5% more in agency MBS before hitting the 25% ceiling.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-abs':{title:'Asset-Backed Securities (ABS)',sub:'SNIC/SSIC Exhibit A',clause:'ABS, other than MBS may be purchased but may not exceed <strong>20% of the portfolio</strong>.',context:'Non-mortgage ABS (auto, credit cards, student loans, equipment) capped at 20%. This is separate from the 25% MBS cap — they do not stack against each other.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-nonagency':{title:'Non-Agency MBS — Edge Case Only',sub:'SNIC/SSIC Exhibit A',clause:'Non-US Agency issues are limited to <strong>25% of the portfolio</strong> in the event of a restructuring of the mortgage market whereby: Fannie Mae and Freddie Mac are <strong>no longer agencies of, or guaranteed by, the US government</strong>; No other equivalent GSE is mandated to issue mortgages as a replacement; The mortgage market moves to a government sponsored non-US Agency solution.',context:'Non-agency MBS is NOT normally permitted. This is a force-majeure carve-out only if Fannie/Freddie lose GSE status and no replacement is mandated. Under normal conditions, treat non-agency MBS as prohibited.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-issuer':{title:'Corporate Bond Issue & Issuer Limits',sub:'SNIC/SSIC Exhibit A',clause:'The Portfolio may not hold more than <strong>5% of any particular corporate bond issue</strong> or <strong>2% of the obligor\'s total outstanding issuance</strong>. All corporate bond issues must have an original issue amount of <strong>$10m or more</strong>.',context:'Two corporate concentration limits: max 5% of any single bond issue, and max 2% of the issuer\'s total outstanding debt. $10M minimum issue size rules out small/illiquid private placements.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-securitized':{title:'Per-Transaction Limit — Securitized Products',sub:'SNIC/SSIC Exhibit A',clause:'For securitized products, such as MBS, ABS and CMBS, the portfolio may not hold more than <strong>5% of any total transaction</strong>. Securities issued by a <strong>Government Sponsored Entity (GSE) are exempt</strong> and fall under the individual securities holdings limits of the portfolio.',context:'For any individual MBS/ABS/CMBS deal, you cannot hold more than 5% of the total deal size. This is a deal-level concentration limit separate from issuer and portfolio-level caps. GSE securities are carved out.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-duration':{title:'Portfolio Duration Target',sub:'SNIC/SSIC Exhibit A',clause:'The <strong>modified adjusted duration</strong> target of the fixed income portion of the portfolio is subject to a <strong>minimum of 0 years</strong> and a <strong>maximum of 7 years</strong>.',context:'Portfolio-level modified adjusted duration must stay between 0 and 7 years. Individual securities can be longer (e.g. a 10yr FRN) as long as the blended portfolio duration stays ≤7 years.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-cashcap':{title:'Cash Equivalent — Single Instrument Cap',sub:'SNIC/SSIC Exhibit A',clause:'No single cash equivalent instrument with a maturity of less than <strong>90 days</strong> should exceed <strong>10% of the portfolio</strong> unless approved rebalance trades temporarily require the cash equivalent to be greater than the 10% limit.',context:'Any single money market instrument, T-bill, or other <90 day instrument is capped at 10% per instrument. Exception carved out for temporary rebalance trades.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-lending':{title:'Securities Lending — Prohibited',sub:'SNIC/SSIC Exhibit A',clause:'<strong>The portfolio will not participate in any securities lending activities.</strong>',context:'Absolute prohibition. No repo, no reverse repo, no stock lending, no pledging of trust assets. No exceptions.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-cp':{title:'Commercial Paper',sub:'SNIC/SSIC Exhibit A',clause:'All Commercial Paper investments must be rated <strong>A-1 or better by S&P or Fitch and P-1 by Moody\'s</strong>. All Euro Commercial Paper must be collateralized or owned by a minimum rated A-1/P-1 company. <strong>All securities must be dollar denominated.</strong>',context:'Top tier only — A-1/P-1 minimum from both S&P/Fitch AND Moody\'s. Euro CP must be backed by a top-tier entity. All must be USD.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-frn':{title:'Floating Rate Notes',sub:'SNIC/SSIC Exhibit A',clause:'Floating Rate Notes (FRN) may be purchased provided that their <strong>final maturity may not exceed 10 years</strong> and <strong>interest resets may not exceed 6 months</strong>.',context:'FRNs permitted with two conditions: final maturity ≤10yr, coupon resets at least every 6 months. Individual securities can exceed the 7yr duration target since duration is measured at portfolio level.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-nonus':{title:'Non-US Obligations',sub:'SNIC/SSIC Exhibit A',clause:'No more than <strong>20% of the portfolio</strong> are to be obligations of non-US borrowers or guarantors. Obligations of <strong>supra-national issuers</strong> and <strong>foreign governments</strong> are limited to <strong>5% and 10%</strong> of the portfolio respectively. All such securities must be <strong>dollar denominated</strong>.',context:'Non-US issuers allowed but constrained: 20% total, with sub-limits of 5% supra-nationals and 10% foreign govts. All must be USD.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'snic-shortterm':{title:'Acceptable Short-Term Investments',sub:'SNIC/SSIC Exhibit A',clause:'Acceptable Short-Term Investments: <strong>US Treasury Bills; Certificates of Deposit; Commercial Paper; US Government Agencies; US Treasury Notes; Bankers Acceptances; Euro-Commercial Paper</strong>.',context:'Listed as acceptable short-term instruments. CDs, bankers acceptances, and Euro CP are all listed alongside Treasuries and commercial paper for the short end of the portfolio.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'cb-assets':{title:'Clear Blue — Permitted Investments (Exhibit B)',sub:'Clear Blue Exhibit B — Executed Feb/Mar 2026',clause:'(a) Cash/cash equivalent; and (b) Credit instruments as follows: <strong>U.S. Treasuries; duration of 5 years or less. State and municipal bonds: A rated or higher; duration of 5 years or less. U.S. domestic corporate bonds: BBB or higher; duration of 5 years or less, not to exceed 20% of the total portfolio. Mortgage-Backed Securities.</strong> Bond ratings: Standard & Poor\'s or Moody\'s Investor\'s Service.',context:'This is the complete Exhibit B. Four permitted categories: (1) cash/equivalents, (2) Treasuries ≤5yr, (3) A-rated+ munis ≤5yr, (4) BBB+ domestic corp bonds ≤5yr capped at 20%, (5) MBS (no explicit cap stated). Rating source: S&P or Moody\'s only — no Fitch.',doc:'https://YOUR-SHAREPOINT-URL/ClearBlue-Trust.pdf'},
+  'cb-assetdef':{title:'Clear Blue — Asset Definition',sub:'Clear Blue § 2',clause:'"Assets" is defined in this Agreement as any combination of (a) cash (United States legal tender), (b) <strong>certificates of deposit (issued by a United States bank and payable in United States legal tender)</strong>, (c) Securities listed by the Securities Valuation Office of the NAIC and <strong>rated NAIC-1</strong>, and (d) any other form of security in which the insurance laws applicable to the Reinsurance Agreement authorize domestic insurers to invest, provided such securities are not in, nor issued by, an institution that is the parent, subsidiary or affiliate of either Beneficiary or Grantor.',context:'Clear Blue uses NAIC-1 rating (highest category) as the baseline for eligible securities, mapped against S&P/Moody\'s in Exhibit B. CDs from US banks are explicitly permitted. Texas insurance law sets the outer boundary for what can be held.',doc:'https://YOUR-SHAREPOINT-URL/ClearBlue-Trust.pdf'},
+  'cb-authority':{title:'Clear Blue — Investment Authorization (Stricter)',sub:'Clear Blue § 5',clause:'on the prior written instructions of GRANTOR together with the <strong>prior written consent of BENEFICIARY</strong>, to make any investments which comply with BENEFICIARY\'s Investment Policy, attached hereto as Exhibit B.',context:'Clear Blue is materially stricter than Sutton on investment authorization. Every investment requires both Grantor written instructions AND Beneficiary written consent. With Sutton, Grantor direction alone is sufficient.',doc:'https://YOUR-SHAREPOINT-URL/ClearBlue-Trust.pdf'},
+  'cb-joint':{title:'Clear Blue — Joint Beneficiary Consent Required',sub:'Clear Blue § 34',clause:'Whenever in this Agreement any consent, approval or written direction of the Beneficiary is required or contemplated, the <strong>joint written consent, approval or written direction of each of the corporations comprising the term Beneficiary</strong> shall be required.',context:'All four entities (Clear Blue Insurance, Clear Blue Specialty, Rock Ridge, Highlander) must jointly consent for investments, substitutions, and capital actions. This creates operational complexity compared to single-beneficiary trusts.',doc:'https://YOUR-SHAREPOINT-URL/ClearBlue-Trust.pdf'},
+  'cb-withdrawal':{title:'Clear Blue — Beneficiary Withdrawal (No Notice Required)',sub:'Clear Blue § 10',clause:'Withdrawals from the Trust Account may be made at <strong>BENEFICIARY\'s sole discretion, at any time and without notice to the GRANTOR</strong>, upon the written demand of BENEFICIARY to TRUSTEE.',context:'Clear Blue can withdraw assets at any time with zero advance notice to Bay Harbor Re — no objection window unlike Sutton. Always maintain a buffer above minimum required reserve.',doc:'https://YOUR-SHAREPOINT-URL/ClearBlue-Trust.pdf'},
+  'cb-income':{title:'Clear Blue — Income Withdrawal',sub:'Clear Blue § 12',clause:'GRANTOR shall have the right to receive payments of any cash dividends, interest, and other income payable at any time upon the investments included in the Trust Account, and if received by TRUSTEE, TRUSTEE is authorized to <strong>pay over such income directly to GRANTOR, upon GRANTOR\'s written request, without further authorization by any other party</strong>.',context:'Bay Harbor Re can pull income by written request, no Beneficiary consent needed. Same structure as Sutton for income withdrawals — no frequency cap (unlike Accredited draft).',doc:'https://YOUR-SHAREPOINT-URL/ClearBlue-Trust.pdf'},
+  'trisura-struct':{title:'Trisura — Cross-Collateralized, Independent Withdrawal',sub:'BH Amended Trust § 2.9(a)',clause:'Any Beneficiary may exercise its rights under this Agreement, including the right to submit a Withdrawal Notice, <strong>without the consent of any other Beneficiary</strong> and may withdraw Permitted Securities to satisfy obligations owed to it.',context:'This is the key structural difference in the Trisura trust. Any one of the three beneficiaries (TSIC, TIC, Bricktown) can draw assets independently to satisfy their own obligations — without the others\' knowledge or consent. The pool is cross-collateralized for all three.',doc:'https://YOUR-SHAREPOINT-URL/BH-Amended-Trisura.docx'},
+  'accred-assets':{title:'Accredited — Asset Definition',sub:'Accredited/Pinnacle Draft § 2',clause:'"Assets" is defined as any combination of (a) cash (United States legal tender), (b) <strong>certificates of deposit (issued by a bank organized under the laws of the United States, or located in the United States, and payable in United States legal tender)</strong>, (c) any other form of security in which the insurance laws of the state where the BENEFICIARY is domiciled authorize domestic insurers to invest, provided such securities... comply with the <strong>Investment Guidelines attached to this Agreement</strong>.',context:'CDs are explicitly permitted. The outer boundary is Florida insurance law for domestic insurers. Exhibit B (the Investment Guidelines) is currently blank — once finalized, it will define exactly what\'s eligible.',doc:'https://YOUR-SHAREPOINT-URL/Pinnacle-Accredited-Draft.docx'},
+  'accred-income':{title:'Accredited — Income Withdrawal (Monthly Limit)',sub:'Accredited/Pinnacle Draft § 12',clause:'GRANTOR shall have the right to receive payments of any cash dividends, interest, realized gains and other income payable from time to time upon any shares of stock or obligations included in the Trust Account... <strong>Such withdrawals are limited to one per calendar month.</strong>',context:'Unlike Sutton and Clear Blue (unlimited frequency), Accredited draft caps income withdrawals at one per calendar month. This is material for active portfolios generating regular income.',doc:'https://YOUR-SHAREPOINT-URL/Pinnacle-Accredited-Draft.docx'},
+  'accred-withdrawal':{title:'Accredited — Beneficiary Withdrawal',sub:'Accredited/Pinnacle Draft § 10',clause:'A Withdrawal from the Trust Account may be made at BENEFICIARY\'s sole discretion, <strong>at any time and without advanced notice to the GRANTOR</strong>, upon the written demand (a "Withdrawal Notice") of BENEFICIARY to TRUSTEE.',context:'Same structure as Clear Blue — no advance notice to Bay Harbor Re, no objection window. Immediate upon written demand. No 15-business-day period like Sutton.',doc:'https://YOUR-SHAREPOINT-URL/Pinnacle-Accredited-Draft.docx'},
+  'accred-capital':{title:'Accredited — Capital Actions Require Beneficiary Consent',sub:'Accredited/Pinnacle Draft § 6',clause:'TRUSTEE agrees to process assets in accordance with GRANTOR\'s instruction <strong>together with the prior written consent of BENEFICIARY</strong>; provided it receives the GRANTOR\'s and BENEFICIARY\'s timely written authorization.',context:'Like Clear Blue, Accredited requires both Grantor instruction and Beneficiary written consent for capital actions. Different from Sutton where Grantor direction alone is sufficient.',doc:'https://YOUR-SHAREPOINT-URL/Pinnacle-Accredited-Draft.docx'},
+  'mech-invest':{title:'Investment Manager Authority',sub:'SNIC § 3.1 / § 3.3',clause:'The Grantor may select an <strong>investment manager (or managers)</strong> who may direct the Trustee to invest any part of the Trust Fund in such Permitted Investments. The Trustee shall act on the directions of any such appointed investment manager and shall have <strong>no liability</strong> for acting in accordance with such directions.',context:'Investment manager is appointed by Bay Harbor Re. Once appointed, you direct trades within Permitted Securities. Trustee executes and takes no responsibility for compliance.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-trusteeduty':{title:'Trustee Has Zero Compliance Duty',sub:'SNIC § 3.1',clause:'<strong>The Trustee shall have no responsibility whatsoever to determine that any assets in the Trust Fund are or continue to be Permitted Investments.</strong>',context:'Critical sentence. Trustee will not flag non-compliant trades, will not review for compliance, and bears no liability for holding non-permitted securities. All responsibility sits with Bay Harbor Re and the investment manager.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-unclear':{title:'Unclear Instructions — 30 Day Hold',sub:'SNIC § 3.4',clause:'In the event the Trustee receives incomplete, unclear, or conflicting instructions... the Trustee has the authority to <strong>hold the relevant assets uninvested without liability</strong>... not to exceed <strong>thirty (30) calendar days</strong>.',context:'Unclear instructions = uninvested cash for up to 30 days with no interest. Send clear, complete instructions every time.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-income':{title:'Income Withdrawal — Bay Harbor Re Right',sub:'SNIC § 5.1',clause:'The Grantor may withdraw any or all <strong>interest, realized gains and dividends paid on Trust Fund Assets by written request</strong> to the Trustee. Withdrawals under this Section 5.1 are <strong>not subject to the provisions of Section 2.9</strong> above.',context:'Bay Harbor Re can pull income at any time by written request — no carrier approval needed. Carved out from the beneficiary withdrawal procedures.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-sub':{title:'Asset Substitutions',sub:'SNIC § 3.1',clause:'Trustee shall accept only Assets for substitution which <strong>Trustee determines are at least equal in market value to the Assets withdrawn</strong>.',context:'Substitutions require Bay Harbor Re written request + Beneficiary consent. Replacement must be ≥ market value. Plan ahead.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-withdrawal':{title:'Sutton — Beneficiary Withdrawal & Objection Window',sub:'SNIC § 2.9(a)/(b)',clause:'Upon a receipt of a Withdrawal Notice, the <strong>Grantor shall have fifteen (15) business days to object</strong> to such Withdrawal Notice, in writing to both Beneficiary and Trustee. For the avoidance of doubt, if the Grantor does not object within fifteen (15) business days, the Trustee shall treat this as Grantor consent.',context:'Sutton is the only trust where Bay Harbor Re gets an objection window. 15 business days to dispute in writing — after that it\'s deemed consented. Clear Blue and Accredited have no objection window at all.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-reporting':{title:'Monthly Statements & Notices',sub:'SNIC § 2.6 / § 2.8',clause:'The Trustee shall provide... a written statement of all Assets in the Trust Fund... at intervals no less frequent than the <strong>end of each calendar month</strong>... If neither party files written objection within <strong>sixty (60) days of receipt</strong>, the parties shall be deemed to have approved the report. Trustee shall notify Grantor and Beneficiary within <strong>ten (10) days</strong> of any deposits to or withdrawals.',context:'Monthly statements are the primary reporting mechanism. 60-day objection window — after which the Trustee is released from liability for that period. Deposit/withdrawal notices come within 10 days.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-pricing':{title:'Valuation Methodology — Matrix Pricing',sub:'SNIC § 3.5',clause:'Many fixed income securities are priced on a <strong>matrix system, resulting in a mathematical approximation of price derived by computer</strong>. In some instances prices <strong>may not reflect the most accurate pricing readily available</strong>. <strong>The Trustee shall have no liability for such an occurrence.</strong>',context:'Standard fixed income matrix pricing — not always real-time. Trustee is not liable for inaccuracies. Flag anything materially off to Bay Harbor Re.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-capital':{title:'Capital Actions',sub:'SNIC § 6.6',clause:'Trustee agrees to process assets in accordance with Grantor\'s instruction; provided it receives the <strong>Grantor\'s timely written authorization</strong>. In no event shall Trustee be liable for failure to respond to a capital action if it has not received proper authorization. Trustee shall attempt to notify Grantor of voluntary actions, but <strong>shall not be obligated to do so</strong>.',context:'Trustee will act on capital actions only with timely Grantor authorization. No authorization = no action, no liability. Trustee will try to flag voluntary actions but isn\'t required to.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+  'mech-affiliate':{title:'Affiliate Securities Prohibition',sub:'SNIC § 2.1',clause:'Assets... provided such securities are not in, nor issued by, an institution that is the <strong>parent, subsidiary or affiliate of either Beneficiary or Grantor</strong>.',context:'Cannot hold securities of any entity related to Bay Harbor Re or the carrier through parent/subsidiary/affiliate relationships. Applies to all asset types including cash deposits.',doc:'https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx'},
+};
+
+function showClause(id){
+  const c=CLAUSES[id];if(!c)return;
+  document.getElementById('modal-title').textContent=c.title;
+  document.getElementById('modal-sub').textContent=c.sub;
+  document.getElementById('modal-clause').innerHTML=c.clause;
+  document.getElementById('modal-context').textContent=c.context;
+  const lnk=document.getElementById('modal-link');
+  lnk.href=c.doc;
+  lnk.textContent=c.doc.includes('YOUR-SHAREPOINT')
+    ?'↗ Update with SharePoint URL before sharing'
+    :'↗ View Full Contract on SharePoint';
+  lnk.style.opacity=c.doc.includes('YOUR-SHAREPOINT')?'0.5':'1';
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow=''}
+function closeModalOnOverlay(e){if(e.target===document.getElementById('modal-overlay'))closeModal()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
