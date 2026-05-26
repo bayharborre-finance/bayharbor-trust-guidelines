@@ -287,14 +287,14 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
 
   <div class="trust-grid">
 
-    <!-- ── SUTTON SNIC ───────────────────────────────────────────── -->
-    <div class="trust-card">
+    <!-- ── SUTTON SNIC / SSIC (COMBINED) ───────────────────────── -->
+    <div class="trust-card" style="grid-column:1/-1">
       <div class="trust-card-header hdr-sutton">
-        <div class="carrier-name">Sutton National Insurance Company</div>
-        <div class="carrier-meta">SNIC · Trustee: Comerica Bank &amp; Trust, N.A. · Executed Dec 1, 2025</div>
-        <div class="carrier-status"><span class="chip chip-green">✓ Executed</span></div>
+        <div class="carrier-name">Sutton National Insurance Company &amp; Sutton Specialty Insurance Company</div>
+        <div class="carrier-meta">SNIC &amp; SSIC · Trustee: Comerica Bank &amp; Trust, N.A. · Both Executed Dec 1, 2025 · Exhibit A language is word-for-word identical across both agreements</div>
+        <div class="carrier-status"><span class="chip chip-green">✓ Executed</span> <span class="chip chip-green">✓ Identical Language</span></div>
       </div>
-      <div class="rule-list">
+      <div class="rule-list" style="display:grid;grid-template-columns:1fr 1fr">
         <div class="rule-row"><div class="rule-label">Eligible Rating</div><div class="rule-val"><span class="chip chip-amber">AAA → BBB–</span> S&amp;P/Fitch BBB- or Moody's Baa3 minimum. Split ratings: use the middle of three agencies. <a class="cite" data-clause="snic-rating">Exhibit A</a></div></div>
         <div class="rule-row"><div class="rule-label">BBB– Cap</div><div class="rule-val"><span class="chip chip-amber">20% max</span> BBB- securities capped at 20% of portfolio at purchase. <a class="cite" data-clause="snic-rating">Exhibit A</a></div></div>
         <div class="rule-row"><div class="rule-label">Post-Purchase Downgrade</div><div class="rule-val"><span class="chip chip-red">10% portfolio cap</span> Securities falling below BBB-/Baa3 after purchase may not exceed 10%. If exceeded: Sutton may withhold premium remittances. <a class="cite" data-clause="snic-downgrade">Exhibit A</a></div></div>
@@ -311,25 +311,6 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
         <div class="rule-row"><div class="rule-label">Portfolio Duration</div><div class="rule-val"><span class="chip chip-amber">0–7 years</span> Modified adjusted duration on total fixed income portfolio. <a class="cite" data-clause="snic-duration">Exhibit A</a></div></div>
         <div class="rule-row"><div class="rule-label">Cash Equiv. Single Instr.</div><div class="rule-val"><span class="chip chip-amber">10% max</span> No single instrument with &lt;90 day maturity to exceed 10% of portfolio. Exception for approved rebalance trades. <a class="cite" data-clause="snic-cashcap">Exhibit A</a></div></div>
         <div class="rule-row"><div class="rule-label">Securities Lending</div><div class="rule-val"><span class="chip chip-red">Prohibited</span> No repo, pledge, or lending of trust assets. <a class="cite" data-clause="snic-lending">Exhibit A</a></div></div>
-      </div>
-    </div>
-
-    <!-- ── SUTTON SSIC ───────────────────────────────────────────── -->
-    <div class="trust-card">
-      <div class="trust-card-header hdr-sutton">
-        <div class="carrier-name">Sutton Specialty Insurance Company</div>
-        <div class="carrier-meta">SSIC · Trustee: Comerica Bank &amp; Trust, N.A. · Executed Dec 1, 2025</div>
-        <div class="carrier-status"><span class="chip chip-green">✓ Executed</span></div>
-      </div>
-      <div class="rule-list">
-        <div class="rule-row"><div class="rule-label">Investment Language</div><div class="rule-val"><span class="chip chip-green">Identical to SNIC</span> SSIC Exhibit A is word-for-word the same as SNIC. All limits, caps, and restrictions above apply equally. See SNIC card for full detail. <a class="cite" data-clause="snic-rating">Exhibit A (same)</a></div></div>
-        <div class="rule-row"><div class="rule-label">Eligible Rating</div><div class="rule-val"><span class="chip chip-amber">AAA → BBB–</span> BBB- cap: 20% of portfolio. Split ratings: middle of three agencies.</div></div>
-        <div class="rule-row"><div class="rule-label">US Treasuries</div><div class="rule-val"><span class="chip chip-green">Up to 100%</span> No maturity cap. 7yr portfolio duration limit. TIPS/STRIPS excluded.</div></div>
-        <div class="rule-row"><div class="rule-label">Corp Bonds</div><div class="rule-val"><span class="chip chip-amber">65% max</span> 5% per issuer. 2% of obligor's outstanding. $10M min issue.</div></div>
-        <div class="rule-row"><div class="rule-label">Agency MBS</div><div class="rule-val"><span class="chip chip-amber">25% max</span> CMBS within 25%. ABS 20% separate. Non-agency MBS not permitted.</div></div>
-        <div class="rule-row"><div class="rule-label">Portfolio Duration</div><div class="rule-val"><span class="chip chip-amber">0–7 years</span> Modified adjusted duration on total portfolio.</div></div>
-        <div class="rule-row"><div class="rule-label">Downgrade Rule</div><div class="rule-val"><span class="chip chip-red">10% portfolio cap</span> Breach → SSIC may withhold premium remittances.</div></div>
-        <div class="rule-row"><div class="rule-label">Securities Lending</div><div class="rule-val"><span class="chip chip-red">Prohibited</span></div></div>
       </div>
     </div>
 
@@ -407,10 +388,10 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
 
   <!-- ══ SNIC ══════════════════════════════════════════════════════ -->
   <div class="section-head" style="margin-top:32px">
-    <h2>Sutton National Insurance Company (SNIC)</h2>
-    <span class="section-tag">Comerica · Executed Dec 2025</span>
+    <h2>Sutton National &amp; Sutton Specialty (SNIC / SSIC)</h2>
+    <span class="section-tag">Comerica · Both Executed Dec 2025 · Identical Language</span>
   </div>
-  <p class="section-sub">Trustee: Comerica Bank &amp; Trust, N.A. · Governing law: Michigan · Regulatory reference: Oklahoma insurance law</p>
+  <p class="section-sub">Trustee: Comerica Bank &amp; Trust, N.A. · Governing law: Michigan · Regulatory reference: Oklahoma insurance law · All mechanics below apply equally to both SNIC and SSIC — trust agreements are word-for-word identical.</p>
   <div class="mech-grid">
     <div class="mech-card">
       <div class="mech-card-hdr"><h3>Investment Direction</h3></div>
@@ -441,23 +422,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
       <div>
         <div class="mech-row"><div class="mech-topic">Capital actions</div><div class="mech-detail">Grantor authorization only required. Trustee will attempt to notify Bay Harbor Re of voluntary actions but is not obligated. No authorization = no action, no liability. <a class="cite" data-clause="mech-capital">§ 6.6</a></div></div>
         <div class="mech-row"><div class="mech-topic">Custody</div><div class="mech-detail">Comerica Bank &amp; Trust, N.A. Assets held in Fed Book-Entry or DTCC. All assets must be in fully negotiable form and maintained in the US. <a class="cite" data-clause="mech-custody">§ 6.1</a></div></div>
-        <div class="mech-row"><div class="mech-topic">Contact</div><div class="mech-detail">Marvin J. Turner · mjturner@comerica.com · 411 West Lafayette Blvd, Detroit MI 48226 · Fax: (313) 222-7170</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ SSIC ══════════════════════════════════════════════════════ -->
-  <div class="section-head" style="margin-top:8px">
-    <h2>Sutton Specialty Insurance Company (SSIC)</h2>
-    <span class="section-tag">Comerica · Executed Dec 2025</span>
-  </div>
-  <p class="section-sub">Trustee: Comerica Bank &amp; Trust, N.A. · Governing law: Michigan · Regulatory reference: Oklahoma insurance law</p>
-  <div class="mech-grid">
-    <div class="mech-card" style="grid-column:1/-1">
-      <div class="mech-card-hdr"><h3>All Mechanics — Identical to SNIC</h3></div>
-      <div>
-        <div class="mech-row"><div class="mech-topic">Full parity with SNIC</div><div class="mech-detail">The SSIC trust agreement is word-for-word identical to SNIC across all sections including investment direction, withdrawal procedures, income rights, reporting cadence, capital actions, and custody. The 15-business-day objection window, Grantor-only authorization model, and all other mechanics above apply equally to SSIC. Refer to the SNIC mechanics above in full.</div></div>
-        <div class="mech-row"><div class="mech-topic">Contact</div><div class="mech-detail">Marvin J. Turner · mjturner@comerica.com · 411 West Lafayette Blvd, Detroit MI 48226 · Fax: (313) 222-7170</div></div>
+        <div class="mech-row"><div class="mech-topic">Contact (both trusts)</div><div class="mech-detail">Marvin J. Turner · mjturner@comerica.com · 411 West Lafayette Blvd, Detroit MI 48226 · Fax: (313) 222-7170</div></div>
       </div>
     </div>
   </div>
@@ -616,12 +581,8 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
       <span class="agree-btn-status executed">✓ Executed</span>
     </button>
     <button class="agree-btn" data-agree="snic">
-      <span class="agree-btn-name">SNIC</span>
-      <span class="agree-btn-status executed">✓ Executed</span>
-    </button>
-    <button class="agree-btn" data-agree="ssic">
-      <span class="agree-btn-name">SSIC</span>
-      <span class="agree-btn-status executed">✓ Executed</span>
+      <span class="agree-btn-name">Sutton (SNIC / SSIC)</span>
+      <span class="agree-btn-status executed">✓ Executed · Identical</span>
     </button>
     <button class="agree-btn" data-agree="trisura">
       <span class="agree-btn-name">Trisura</span>
@@ -655,12 +616,12 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
   <div id="agree-snic" class="agree-pane">
     <div class="agree-placeholder hdr-sutton">
       <div class="agree-placeholder-icon">📄</div>
-      <div class="agree-placeholder-name">Sutton National Insurance Company (SNIC)</div>
-      <div class="agree-placeholder-sub">Reinsurance Trust Agreement · Comerica Bank &amp; Trust, N.A. · Executed Dec 1, 2025</div>
+      <div class="agree-placeholder-name">Sutton National &amp; Sutton Specialty (SNIC / SSIC)</div>
+      <div class="agree-placeholder-sub">Two separate trust agreements, identical language · Comerica Bank &amp; Trust, N.A. · Both Executed Dec 1, 2025</div>
       <a class="agree-upload-link" href="https://YOUR-SHAREPOINT-URL/SNIC-Trust.docx" target="_blank">↗ Upload to SharePoint &amp; update link</a>
     </div>
     <div class="agree-meta-row">
-      <div class="agree-meta-item"><span class="agree-meta-label">Beneficiary</span><span>Sutton National Insurance Company</span></div>
+      <div class="agree-meta-item"><span class="agree-meta-label">Beneficiaries</span><span>Sutton National Insurance Company (SNIC) &amp; Sutton Specialty Insurance Company (SSIC) — separate agreements, identical language</span></div>
       <div class="agree-meta-item"><span class="agree-meta-label">Trustee</span><span>Comerica Bank &amp; Trust, N.A.</span></div>
       <div class="agree-meta-item"><span class="agree-meta-label">Effective Date</span><span>December 1, 2025</span></div>
       <div class="agree-meta-item"><span class="agree-meta-label">Governing Law</span><span>Michigan</span></div>
@@ -668,21 +629,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
     </div>
   </div>
 
-  <div id="agree-ssic" class="agree-pane">
-    <div class="agree-placeholder hdr-sutton">
-      <div class="agree-placeholder-icon">📄</div>
-      <div class="agree-placeholder-name">Sutton Specialty Insurance Company (SSIC)</div>
-      <div class="agree-placeholder-sub">Reinsurance Trust Agreement · Comerica Bank &amp; Trust, N.A. · Executed Dec 1, 2025</div>
-      <a class="agree-upload-link" href="https://YOUR-SHAREPOINT-URL/SSIC-Trust.docx" target="_blank">↗ Upload to SharePoint &amp; update link</a>
-    </div>
-    <div class="agree-meta-row">
-      <div class="agree-meta-item"><span class="agree-meta-label">Beneficiary</span><span>Sutton Specialty Insurance Company</span></div>
-      <div class="agree-meta-item"><span class="agree-meta-label">Trustee</span><span>Comerica Bank &amp; Trust, N.A.</span></div>
-      <div class="agree-meta-item"><span class="agree-meta-label">Effective Date</span><span>December 1, 2025</span></div>
-      <div class="agree-meta-item"><span class="agree-meta-label">Governing Law</span><span>Michigan</span></div>
-      <div class="agree-meta-item"><span class="agree-meta-label">Exhibit A</span><span class="chip chip-green">Populated — identical language to SNIC</span></div>
-    </div>
-  </div>
+  
 
   <div id="agree-trisura" class="agree-pane">
     <div class="agree-placeholder hdr-trisura">
