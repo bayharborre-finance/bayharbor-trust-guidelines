@@ -218,39 +218,11 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
   .content{padding:20px 16px 60px}
   .site-header,.tab-nav{padding:0 16px}
 }
-/* PASSWORD GATE */
-#pw-gate{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
-#pw-gate.hidden{display:none}
-.pw-box{background:var(--navy-2);border:1px solid var(--navy-4);border-top:3px solid var(--gold);border-radius:8px;padding:40px 44px;width:380px;max-width:92vw;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.5)}
-.pw-logo{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--white);margin-bottom:4px;letter-spacing:.02em}
-.pw-sub{font-family:var(--mono);font-size:10px;color:var(--slate);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px}
-.pw-label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);text-align:left;display:block;margin-bottom:8px}
-.pw-input{width:100%;background:var(--navy);border:1px solid var(--navy-4);border-radius:4px;padding:11px 14px;font-family:var(--mono);font-size:13px;color:var(--white);letter-spacing:.1em;outline:none;transition:border-color .2s;margin-bottom:16px}
-.pw-input:focus{border-color:var(--gold)}
-.pw-input::placeholder{color:var(--navy-4);letter-spacing:.05em}
-.pw-btn{width:100%;background:var(--gold);border:none;border-radius:4px;padding:11px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);cursor:pointer;transition:background .2s}
-.pw-btn:hover{background:var(--gold-light)}
-.pw-error{font-family:var(--mono);font-size:10px;color:var(--red);margin-top:12px;letter-spacing:.04em;min-height:16px;transition:opacity .2s}
-.pw-footer{font-family:var(--mono);font-size:9px;color:var(--navy-4);margin-top:24px;letter-spacing:.04em;line-height:1.8}
 </style>
 </head>
 <body>
 
-<!-- PASSWORD GATE -->
-<div id="pw-gate">
-  <div class="pw-box">
-    <div class="pw-logo">Bay Harbor Re</div>
-    <div class="pw-sub">Trust Investment Guidelines</div>
-    <label class="pw-label" for="pw-input">Access Passphrase</label>
-    <input id="pw-input" class="pw-input" type="password" placeholder="Enter passphrase" autocomplete="off" spellcheck="false">
-    <button id="pw-btn" class="pw-btn">Access Document</button>
-    <div id="pw-error" class="pw-error"></div>
-    <div class="pw-footer">
-      Bay Harbor Reinsurance Company · Finance &amp; Accounting<br>
-      Contact coconnor@bayharborre.com for access
-    </div>
-  </div>
-</div>
+
 
 <header class="site-header">
   <div class="header-inner">
@@ -838,42 +810,6 @@ function showClause(id){
 function closeModal(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow=''}
 
 document.addEventListener('DOMContentLoaded',function(){
-
-  // ── PASSWORD GATE ──────────────────────────────────────────────
-  // Change PASSPHRASE below to whatever you want to share with managers
-  const PASSPHRASE = 'bayharbor2026';
-  const SESSION_KEY = 'bhr_trust_auth';
-  const gate = document.getElementById('pw-gate');
-  const input = document.getElementById('pw-input');
-  const btn = document.getElementById('pw-btn');
-  const err = document.getElementById('pw-error');
-
-  function unlock() {
-    if (input.value.toLowerCase().trim() === PASSPHRASE.toLowerCase()) {
-      sessionStorage.setItem(SESSION_KEY, '1');
-      gate.classList.add('hidden');
-      err.textContent = '';
-    } else {
-      err.textContent = 'Incorrect passphrase. Contact coconnor@bayharborre.com for access.';
-      input.value = '';
-      input.focus();
-      input.style.borderColor = 'var(--red)';
-      setTimeout(() => { input.style.borderColor = ''; }, 1500);
-    }
-  }
-
-  // Already authenticated this session?
-  if (sessionStorage.getItem(SESSION_KEY) === '1') {
-    gate.classList.add('hidden');
-  }
-
-  btn.addEventListener('click', unlock);
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') unlock();
-    if (e.key !== 'Enter') err.textContent = '';
-  });
-  input.focus();
-  // ── END PASSWORD GATE ──────────────────────────────────────────
 
   document.querySelectorAll('.tab-btn[data-tab]').forEach(btn=>{
     btn.addEventListener('click',function(){showTab(this.dataset.tab,this)});
